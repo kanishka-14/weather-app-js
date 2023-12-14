@@ -12,7 +12,22 @@ const spitOutCelcius = (kelvin) => {
 const isDayTime = (icon) => {
     if (icon.includes('d')) { return true }
     else { return false }
-}
+
+  }
+
+  const requestCity = async (city) => {
+    const baseURL = 'http://api.openweathermap.org/data/2.5/weather'
+    const query = `?q=${city}&appid=${key}`;
+  
+    //make fetch call (promise call)
+    const response = await fetch(baseURL + query);
+  
+    //promise data
+    const data = await response.json();
+    return data;
+  
+  }
+
 updateWeatherApp = (city) => {
     console.log(city);
     const imageName = city.weather[0].icon;
@@ -75,10 +90,9 @@ searchForm.addEventListener('submit', e => {
     console.log(citySearched);
     searchForm.reset();
 
-    requestCity(citySearched)
-        .then((data) => {
-            updateWeatherApp(data);
-        })
-        .catch((error) => { console.log(error) })
+    let data=requestCity(citySearched)
+    updateWeatherApp(data);
 
 })
+const key = '9a8433a78ecb568065c286b0583bc2c1';
+
