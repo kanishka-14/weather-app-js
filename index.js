@@ -68,7 +68,6 @@ updateWeatherApp = (city) => {
 }
 
 
-
 //add an event listner to the form
 searchForm.addEventListener('submit', e => {
     e.preventDefault();
@@ -81,7 +80,5 @@ searchForm.addEventListener('submit', e => {
             updateWeatherApp(data);
         })
         .catch((error) => { console.log(error) })
-
-
 
 })
